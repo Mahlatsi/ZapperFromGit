@@ -13,7 +13,7 @@ import retrofit2.http.Path;
  */
 
 public interface PersonAPI {
-
+    //this where i get all the apis
     @GET("person")
     Call<List<PersonDetails>> getItems();
     @GET("person/{id}")

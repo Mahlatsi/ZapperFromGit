@@ -23,24 +23,27 @@ import static com.example.monty.zapper.R.id.main_container;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentManager mFragmentManager;
-    private FragmentTransaction mFragmentTransaction;
+
     private List<PersonDetails> PersonDetailsData;
-    private static final String STATE_ITEMS = "items";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState != null) {
-            PersonDetailsData = (List<PersonDetails>) savedInstanceState.getSerializable(STATE_ITEMS);
+            PersonDetailsData = (List<PersonDetails>) savedInstanceState.getSerializable(Constants.STATE_ITEMS);
         }
-        mFragmentManager = getSupportFragmentManager();
-        mFragmentTransaction = mFragmentManager.beginTransaction();
-        getData();
+         FragmentManager mFragmentManager = getSupportFragmentManager();
+         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        getData(mFragmentTransaction);
     }
 
-    private void getData() {
+    /**
+     * this is called to get data from api and add a new fragment
+     * @param mFragmentTransaction
+     */
+    private void getData( final FragmentTransaction mFragmentTransaction) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -61,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mFragmentTransaction.commit();
             }
-
             @Override
             public void onFailure(Call<List<PersonDetails>> call, Throwable t) {
                 Log.d("onFailure", t.toString());
@@ -72,9 +74,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(STATE_ITEMS, (Serializable) PersonDetailsData);
+        outState.putSerializable(Constants.STATE_ITEMS, (Serializable) PersonDetailsData);
     }
 
+    /**
+     * this returns a list of dataf orm api
+     * @return
+     */
     public List<PersonDetails> getPersonDetailsData() {
         return PersonDetailsData;
     }

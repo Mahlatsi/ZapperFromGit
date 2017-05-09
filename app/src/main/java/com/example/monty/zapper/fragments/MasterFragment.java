@@ -37,10 +37,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * create an instance of this fragment.
  */
 public class MasterFragment extends Fragment {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,15 +85,19 @@ public class MasterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        RecyclerView RecyclerView;
+        RecyclerView.Adapter mAdapter;
+        RecyclerView.LayoutManager mLayoutManager;
+
         View rootView = inflater.inflate(R.layout.fragment_master, container, false);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        RecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.setLayoutManager(mLayoutManager);
         MainActivity mainActivity = (MainActivity) getActivity();
 
         mAdapter = new Master_Adapter(mainActivity.getPersonDetailsData(),getContext());
-        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.setAdapter(mAdapter);
         return rootView;
     }
 
@@ -108,16 +108,6 @@ public class MasterFragment extends Fragment {
         }
     }
 
-  //  @Override
-  //  public void onAttach(Context context) {
-  //      super.onAttach(context);
-  //      if (context instanceof OnFragmentInteractionListener) {
-  //          mListener = (OnFragmentInteractionListener) context;
-  //      } else {
-  //          throw new RuntimeException(context.toString()
-  //                  + " must implement OnFragmentInteractionListener");
-  //      }
-  //  }
 
     @Override
     public void onDetach() {
@@ -140,9 +130,4 @@ public class MasterFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    /**
-     * to get the background color of the cardview
-     * @param position
-     * @return color
-     */
 }

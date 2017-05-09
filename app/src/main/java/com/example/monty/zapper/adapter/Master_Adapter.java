@@ -57,6 +57,7 @@ public class Master_Adapter extends RecyclerView.Adapter<Master_Adapter.ViewHold
                 holder.getAdapterPosition();
                 FragmentManager mFragmentManager = ((FragmentActivity)mContext).getSupportFragmentManager();
                 FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
+
                 mTransaction.addToBackStack("");
                 if(mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                     mTransaction.replace(details_container, new DetailFragment(id));
@@ -64,7 +65,6 @@ public class Master_Adapter extends RecyclerView.Adapter<Master_Adapter.ViewHold
                     mTransaction.replace(main_container, new DetailFragment(id));
                 }
                 mTransaction.commit();
-
             }
         });
     }

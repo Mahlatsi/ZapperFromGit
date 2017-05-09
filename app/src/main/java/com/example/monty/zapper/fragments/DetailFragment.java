@@ -53,9 +53,8 @@ public class DetailFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PersonAPI api_interface = retrofit.create(PersonAPI.class);
-        Call<PersonDetails> call = api_interface.getDetails(mAdapterPosistion);
-        //Call<PersonDetails> call = api_interface.getDetails(1);
 
+        Call<PersonDetails> call = api_interface.getDetails(mAdapterPosistion);
         call.enqueue(new Callback<PersonDetails>() {
             @Override
             public void onResponse(Call<PersonDetails> call, Response<PersonDetails> response) {
@@ -73,14 +72,10 @@ public class DetailFragment extends Fragment {
                     firstName.setText("firstName: " + response.body().getFirstName());
                     lastName.setText("lastName: " + response.body().getLastName());
                 }
-
-
-
             }
 
             @Override
             public void onFailure(Call<PersonDetails> call, Throwable t) {
-
             }
         });
         return rootView;
@@ -92,17 +87,6 @@ public class DetailFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
-    //@Override
-    //public void onAttach(Context context) {
-    //    super.onAttach(context);
-    //    if (context instanceof OnFragmentInteractionListener) {
-    //        mListener = (OnFragmentInteractionListener) context;
-    //    } else {
-    //        throw new RuntimeException(context.toString()
-    //                + " must implement OnFragmentInteractionListener");
-    //    }
-    //}
 
     @Override
     public void onDetach() {

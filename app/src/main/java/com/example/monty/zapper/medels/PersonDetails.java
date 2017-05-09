@@ -3,6 +3,7 @@ package com.example.monty.zapper.medels;
 import java.io.Serializable;
 
 /**
+ * this is like a pojo class
  * Created by Monty on 5/7/2017.
  */
 
