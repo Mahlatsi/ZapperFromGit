@@ -145,30 +145,4 @@ public class MasterFragment extends Fragment {
      * @param position
      * @return color
      */
-    public int getBackgroundColor(int position) {
-        int color;
-        int num = position % 6;
-
-        switch (num) {
-            case 0:
-                color = R.color.app_color_lime;
-                break;
-            case 1:
-                color = R.color.app_color_orange;
-                break;
-            case 2:
-                color = R.color.app_color_blue;
-                break;
-            case 3:
-                color = R.color.app_color_red;
-                break;
-            case 4:
-                color = R.color.app_color_purple;
-                break;
-            default:
-                color = R.color.app_custom_color;
-                break;
-        }
-        return  color;
-    }
 }

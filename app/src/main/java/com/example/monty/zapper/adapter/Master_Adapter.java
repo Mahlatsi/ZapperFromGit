@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,9 +45,11 @@ public class Master_Adapter extends RecyclerView.Adapter<Master_Adapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.mId.setText(String.valueOf(mPersonDetailsList.get(position).getId()));
         holder.mFirstName.setText(mPersonDetailsList.get(position).getFirstName());
         holder.mLastName.setText(mPersonDetailsList.get(position).getLastName());
 
+        holder.mCardView.setCardBackgroundColor(ContextCompat.getColor(mContext,getBackgroundColor(position)));
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,12 +76,40 @@ public class Master_Adapter extends RecyclerView.Adapter<Master_Adapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
-        private TextView mFirstName,mLastName;
+        private TextView mFirstName,mLastName,mId;
         public ViewHolder(View itemView) {
             super(itemView);
             mCardView = (CardView)itemView.findViewById(R.id.card_view);
+            mId = (TextView)itemView.findViewById(R.id.id_text);
             mFirstName = (TextView)itemView.findViewById(R.id.firstname_text_view);
             mLastName = (TextView)itemView.findViewById(R.id.lastname_text_view);
         }
     }
+    public int getBackgroundColor(int position) {
+        int color;
+        int num = position % 6;
+
+        switch (num) {
+            case 0:
+                color = R.color.app_color_lime;
+                break;
+            case 1:
+                color = R.color.app_color_orange;
+                break;
+            case 2:
+                color = R.color.app_color_blue;
+                break;
+            case 3:
+                color = R.color.app_color_red;
+                break;
+            case 4:
+                color = R.color.app_color_purple;
+                break;
+            default:
+                color = R.color.app_custom_color;
+                break;
+        }
+        return  color;
+    }
+
 }
