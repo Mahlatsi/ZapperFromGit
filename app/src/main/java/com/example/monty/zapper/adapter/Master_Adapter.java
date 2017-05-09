@@ -44,7 +44,7 @@ public class Master_Adapter extends RecyclerView.Adapter<Master_Adapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mId.setText(String.valueOf(mPersonDetailsList.get(position).getId()));
         holder.mFirstName.setText(mPersonDetailsList.get(position).getFirstName());
         holder.mLastName.setText(mPersonDetailsList.get(position).getLastName());
