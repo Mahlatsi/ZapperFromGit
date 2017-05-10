@@ -1,14 +1,12 @@
 package com.example.monty.zapper.fragments;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +14,6 @@ import android.view.ViewGroup;
 import com.example.monty.zapper.MainActivity;
 import com.example.monty.zapper.R;
 import com.example.monty.zapper.adapter.Master_Adapter;
-import com.example.monty.zapper.api_interface.PersonAPI;
-import com.example.monty.zapper.medels.PersonDetails;
-
-import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,6 +84,7 @@ public class MasterFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
 
         mAdapter = new Master_Adapter(mainActivity.getPersonDetailsData(),getContext());
+
         RecyclerView.setAdapter(mAdapter);
         return rootView;
     }

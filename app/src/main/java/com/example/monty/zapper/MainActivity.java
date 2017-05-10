@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     mFragmentTransaction.replace(main_container, new MasterFragment());
-                    mFragmentTransaction.add(details_container, new DetailFragment(1));
+                    mFragmentTransaction.add(details_container, new DetailFragment(1,0));
                 } else {
                     mFragmentTransaction.replace(main_container, new MasterFragment());
                 }

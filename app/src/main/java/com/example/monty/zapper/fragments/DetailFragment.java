@@ -1,13 +1,18 @@
 package com.example.monty.zapper.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.monty.zapper.MainActivity;
@@ -34,13 +39,15 @@ import static com.example.monty.zapper.R.id.main_container;
  */
 public class DetailFragment extends Fragment {
 
+    private int mColor;
     private int mAdapterPosistion = 1;
     private OnFragmentInteractionListener mListener;
     public DetailFragment() {
         // Required empty public constructor
     }
-    public DetailFragment(int adapterPosition) {
+    public DetailFragment(int adapterPosition, int color) {
         this.mAdapterPosistion = adapterPosition;
+        this.mColor = color;
     }
 
     @Override
@@ -48,6 +55,8 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        LinearLayout Layout_bg = (LinearLayout) rootView.findViewById(R.id.Layout_bg);
+        Layout_bg.setBackgroundResource(Constants.getBackgroundColor(mColor));
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -64,11 +73,13 @@ public class DetailFragment extends Fragment {
                 TextView lastName = (TextView)rootView.findViewById(R.id.lastname_text_view_details);
                 TextView age = (TextView)rootView.findViewById(R.id.age_text_view_details);
                 TextView favouriteColour = (TextView)rootView.findViewById(R.id.favouriteColour_text_view_details);
+
+
                 if (response.body()!= null){
+
                     id.setText("Id: " + String.valueOf(response.body().getId()));
                     favouriteColour.setText("favouriteColour: " + response.body().getFavouriteColour());
                     age.setText("age: " + String.valueOf(response.body().getAge()));
-
                     firstName.setText("firstName: " + response.body().getFirstName());
                     lastName.setText("lastName: " + response.body().getLastName());
                 }
